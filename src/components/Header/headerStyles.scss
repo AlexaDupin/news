@@ -1,0 +1,17 @@
+.header__flags {
+    display: flex;
+    justify-content: end;
+}
+
+.header__flag {
+    width: 15%;
+    padding: 0.6rem;
+    margin: 1rem 0.5rem 1rem 0;
+}
+
+.header__title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
+}
