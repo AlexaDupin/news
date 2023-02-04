@@ -11,7 +11,7 @@ function Article({
 }) {
   return (
     <article className="articles__item">
-      <a href={url}>
+      <a href={url} target="_blank" rel="noreferrer">
         <img src={image || defaultImage} alt="" className="article__image" />
       </a>
       <p className="article__title">{title}</p>
