@@ -10,14 +10,12 @@ function Article({
   image,
 }) {
   return (
-    <div>
-      <article>
-        <a href={url}>
-          <img src={image || defaultImage} alt="" className="article__image" />
-        </a>
-        <p className="article__title">{title}</p>
-      </article>
-    </div>
+    <article className="articles__item">
+      <a href={url}>
+        <img src={image || defaultImage} alt="" className="article__image" />
+      </a>
+      <p className="article__title">{title}</p>
+    </article>
   );
 }
 

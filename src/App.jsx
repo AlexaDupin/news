@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import ArticleList from './components/ArticleList/ArticleList';
 import Header from './components/Header/Header';
+import './styles/_reset.css';
 import './styles/index.scss';
 
 function App() {

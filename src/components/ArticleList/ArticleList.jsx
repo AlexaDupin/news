@@ -32,7 +32,7 @@ function ArticleList({
   }, [country]);
 
   return (
-    <div className="articles__list">
+    <main className="articles__list">
       {results.map((article) => (
         <Article
           key={article.id}
@@ -41,8 +41,7 @@ function ArticleList({
           image={article.urlToImage}
         />
       ))}
-
-    </div>
+    </main>
   );
 }
 

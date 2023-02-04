@@ -1,8 +1,4 @@
 .article__image {
-    // width: 90%;
-    // display: block;
-    // margin: 1.5rem auto;
-    // border-radius: 0.8rem;
     width: 100%;
 }
 
@@ -11,3 +7,13 @@
     font-weight: bold;
     font-size: 1.1rem;
 }
+
+.articles__item {
+    width: 100%;
+}
+
+@media screen and (min-width: 1000px) {
+    .articles__item {
+        width: 25%;
+    }
+    }
