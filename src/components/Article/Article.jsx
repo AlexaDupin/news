@@ -20,6 +20,7 @@ function Article({
     </div>
   );
 }
+
 Article.propTypes = {
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
