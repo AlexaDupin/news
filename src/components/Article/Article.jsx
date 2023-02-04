@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import defaultImage from '../../assets/breaking_news.jpg';
 
 import './articleStyles.scss';
 
@@ -12,7 +13,7 @@ function Article({
     <div>
       <article>
         <a href={url}>
-          <img src={image} alt="" className="article__image" />
+          <img src={image || defaultImage} alt="" className="article__image" />
         </a>
         <p className="article__title">{title}</p>
       </article>
@@ -22,9 +23,11 @@ function Article({
 Article.propTypes = {
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/require-default-props
+  image: PropTypes.string,
 };
 
-Article.defaultProps = {};
+Article.defaultProps = {
+};
 
 export default React.memo(Article);
