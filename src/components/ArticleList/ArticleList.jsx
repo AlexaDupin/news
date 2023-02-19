@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import axios from 'axios';
@@ -9,9 +9,9 @@ import './articleListStyles.scss';
 
 function ArticleList({
   country,
+  results,
+  setResults,
 }) {
-  const [results, setResults] = useState([]);
-
   // FetchArticle on API depending on country
   useEffect(() => {
     const fetchArticle = async () => {
@@ -33,12 +33,14 @@ function ArticleList({
 
   return (
     <main className="articles__list">
-      {results.map((article) => (
+      {results.map(({
+        id, title, url, urlToImage,
+      }) => (
         <Article
-          key={article.id}
-          title={article.title}
-          url={article.url}
-          image={article.urlToImage}
+          key={id}
+          title={title}
+          url={url}
+          image={urlToImage}
         />
       ))}
     </main>
@@ -47,6 +49,13 @@ function ArticleList({
 
 ArticleList.propTypes = {
   country: PropTypes.string.isRequired,
+  setResults: PropTypes.func.isRequired,
+  results: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    urlToImage: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 export default React.memo(ArticleList);
