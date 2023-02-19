@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { US, FR } from 'country-flag-icons/react/3x2';
 import {
@@ -10,16 +10,29 @@ import './headerStyles.scss';
 
 function Header({
   setCountry,
-  country,
+  setLanguage,
 }) {
-  // Customise title depending on country
-  const getTitle = () => {
-    if (country === 'us') {
-      return 'News directly from the US';
-    }
-    if (country === 'fr') {
-      return 'Les actualités en France';
-    }
+  const [title, setTitle] = useState('');
+  // // Customise title depending on country
+  // const getTitle = () => {
+  //   if (country === 'us') {
+  //     return 'News directly from the US';
+  //   }
+  //   if (country === 'fr') {
+  //     return 'Les actualités en France';
+  //   }
+  // };
+
+  const handleUS = () => {
+    setCountry('us');
+    setLanguage('en');
+    setTitle('News directly from the US');
+  };
+
+  const handleFR = () => {
+    setCountry('fr');
+    setLanguage('fr');
+    setTitle('Les actualités en France');
   };
 
   return (
@@ -29,7 +42,7 @@ function Header({
           <li className="header__flag">
             <NavLink
               to="/"
-              onClick={() => setCountry('us')}
+              onClick={handleUS}
             >
               <US title="United States" />
             </NavLink>
@@ -38,14 +51,14 @@ function Header({
           <li className="header__flag">
             <NavLink
               to="/fr"
-              onClick={() => setCountry('fr')}
+              onClick={handleFR}
             >
               <FR title="France" />
             </NavLink>
           </li>
         </ul>
       </nav>
-      <h1 className="header__title">{getTitle()}</h1>
+      <h1 className="header__title">{title}</h1>
     </header>
   );
 }

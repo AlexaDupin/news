@@ -10,6 +10,7 @@ import './styles/index.scss';
 
 function App() {
   const [country, setCountry] = useState('us');
+  const [language, setLanguage] = useState('us');
   const [results, setResults] = useState([]);
 
   return (
@@ -17,30 +18,39 @@ function App() {
       <ScrollToTop />
       <Header
         setCountry={setCountry}
-        country={country}
-      />
-      <SearchBox
-        setResults={setResults}
+        setLanguage={setLanguage}
       />
       <Routes>
         <Route
           path="/"
           element={(
-            <ArticleList
-              country={country}
-              results={results}
-              setResults={setResults}
-            />
+            <>
+              <SearchBox
+                setResults={setResults}
+                language={language}
+              />
+              <ArticleList
+                country={country}
+                results={results}
+                setResults={setResults}
+              />
+            </>
           )}
         />
         <Route
           path="/fr"
           element={(
-            <ArticleList
-              country={country}
-              results={results}
-              setResults={setResults}
-            />
+            <>
+              <SearchBox
+                setResults={setResults}
+                language={language}
+              />
+              <ArticleList
+                country={country}
+                results={results}
+                setResults={setResults}
+              />
+            </>
           )}
         />
       </Routes>

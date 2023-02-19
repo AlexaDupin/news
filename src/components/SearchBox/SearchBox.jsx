@@ -8,6 +8,7 @@ import './searchBoxStyles.scss';
 
 function SearchBox({
   setResults,
+  language,
 }) {
   const [search, setSearch] = useState('');
 
@@ -17,7 +18,7 @@ function SearchBox({
 
   const fetchArticle = async () => {
     try {
-      const response = await axios.get(`https://newsapi.org/v2/everything?q=${search}&searchIn=title&language=en&sortBy=publishedAt&apiKey=1ce0e4832cb6431991be94fefd1c5b62`);
+      const response = await axios.get(`https://newsapi.org/v2/everything?q=${search}&searchIn=title&language=${language}&sortBy=publishedAt&apiKey=1ce0e4832cb6431991be94fefd1c5b62`);
       setResults(response.data.articles);
       console.log('response.data', response.data);
     } catch (error) {
@@ -34,6 +35,24 @@ function SearchBox({
     setSearch('');
   };
 
+  const getLabel = () => {
+    if (language === 'en') {
+      return 'What are you looking for?';
+    }
+    if (language === 'fr') {
+      return 'Que recherchez-vous ?';
+    }
+  };
+
+  const getBtnText = () => {
+    if (language === 'en') {
+      return 'Search';
+    }
+    if (language === 'fr') {
+      return 'Rechercher';
+    }
+  };
+
   return (
     <form
       className="searchbox"
@@ -42,7 +61,7 @@ function SearchBox({
       <label
         className="searchbox_field"
       >
-        What are you looking for?
+        {getLabel()}
       </label>
       <input
         className="searchbox_field"
@@ -54,8 +73,7 @@ function SearchBox({
         className="searchbox_field"
         type="submit"
       >
-        Rechercher
-
+        {getBtnText()}
       </button>
     </form>
   );
