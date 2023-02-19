@@ -12,16 +12,7 @@ function Header({
   setCountry,
   setLanguage,
 }) {
-  const [title, setTitle] = useState('');
-  // // Customise title depending on country
-  // const getTitle = () => {
-  //   if (country === 'us') {
-  //     return 'News directly from the US';
-  //   }
-  //   if (country === 'fr') {
-  //     return 'Les actualités en France';
-  //   }
-  // };
+  const [title, setTitle] = useState('News directly from the US');
 
   const handleUS = () => {
     setCountry('us');
@@ -65,7 +56,7 @@ function Header({
 
 Header.propTypes = {
   setCountry: PropTypes.func.isRequired,
-  country: PropTypes.string.isRequired,
+  setLanguage: PropTypes.func.isRequired,
 };
 
 Header.defaultProps = {};

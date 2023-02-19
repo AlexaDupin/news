@@ -10,7 +10,7 @@ import './styles/index.scss';
 
 function App() {
   const [country, setCountry] = useState('us');
-  const [language, setLanguage] = useState('us');
+  const [language, setLanguage] = useState('en');
   const [results, setResults] = useState([]);
 
   return (

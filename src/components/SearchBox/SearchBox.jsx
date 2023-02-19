@@ -80,6 +80,7 @@ function SearchBox({
 }
 SearchBox.propTypes = {
   setResults: PropTypes.func.isRequired,
+  language: PropTypes.string.isRequired,
 };
 
 SearchBox.defaultProps = {};
