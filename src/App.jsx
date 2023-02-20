@@ -5,6 +5,7 @@ import ArticleList from './components/ArticleList/ArticleList';
 import Header from './components/Header/Header';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import SearchBox from './components/SearchBox/SearchBox';
+import Categories from './components/Categories/Categories';
 import './styles/_reset.css';
 import './styles/index.scss';
 
@@ -19,6 +20,9 @@ function App() {
       <Header
         setCountry={setCountry}
         setLanguage={setLanguage}
+      />
+      <Categories
+        language={language}
       />
       <Routes>
         <Route
