@@ -26,6 +26,9 @@ function Header({
     setTitle('Les actualités en France');
   };
 
+  const activeStyle = {
+  };
+
   return (
     <header>
       <nav>
@@ -33,18 +36,24 @@ function Header({
           <li className="header__flag">
             <NavLink
               to="/"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
               onClick={handleUS}
             >
-              <US title="United States" />
+              <div className="header__flag__icon">
+                <US title="United States" />
+              </div>
             </NavLink>
           </li>
           {' '}
           <li className="header__flag">
             <NavLink
               to="/fr"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
               onClick={handleFR}
             >
-              <FR title="France" />
+              <div className="header__flag__icon">
+                <FR title="France" />
+              </div>
             </NavLink>
           </li>
         </ul>

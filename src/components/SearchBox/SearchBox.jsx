@@ -64,13 +64,13 @@ function SearchBox({
         {getLabel()}
       </label>
       <input
-        className="searchbox_field"
+        className="searchbox_field searchbox_input"
         type="text"
         value={search}
         onChange={handleChange}
       />
       <button
-        className="searchbox_field"
+        className="searchbox_field searchbox_button"
         type="submit"
       >
         {getBtnText()}
