@@ -23,11 +23,24 @@ function Categories({
     ));
   }
 
+  const activeStyle = {
+    textDecoration: 'underline',
+  };
+
   return (
     <nav>
       <ul className="categories">
         {categories.map((category) => (
-          <li className="category">{category}</li>))}
+          <li className="category">
+            <NavLink
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              className="appheader-button"
+              to={`fr/${category.props.children.toLowerCase()}`}
+            >
+              {category}
+            </NavLink>
+          </li>
+        ))}
       </ul>
     </nav>
   );

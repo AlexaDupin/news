@@ -24,37 +24,39 @@ function App() {
       <Categories
         language={language}
       />
+      <SearchBox
+        setResults={setResults}
+        language={language}
+      />
       <Routes>
         <Route
           path="/"
           element={(
-            <>
-              <SearchBox
-                setResults={setResults}
-                language={language}
-              />
-              <ArticleList
-                country={country}
-                results={results}
-                setResults={setResults}
-              />
-            </>
+            <ArticleList
+              country={country}
+              results={results}
+              setResults={setResults}
+            />
           )}
         />
         <Route
           path="/fr"
           element={(
-            <>
-              <SearchBox
-                setResults={setResults}
-                language={language}
-              />
-              <ArticleList
-                country={country}
-                results={results}
-                setResults={setResults}
-              />
-            </>
+            <ArticleList
+              country={country}
+              results={results}
+              setResults={setResults}
+            />
+          )}
+        />
+        <Route
+          path="/fr/:category"
+          element={(
+            <ArticleList
+              country={country}
+              results={results}
+              setResults={setResults}
+            />
           )}
         />
       </Routes>
