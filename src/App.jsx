@@ -23,6 +23,8 @@ function App() {
       />
       <Categories
         language={language}
+        setResults={setResults}
+        country={country}
       />
       <SearchBox
         setResults={setResults}
@@ -51,6 +53,16 @@ function App() {
         />
         <Route
           path="/fr/:category"
+          element={(
+            <ArticleList
+              country={country}
+              results={results}
+              setResults={setResults}
+            />
+          )}
+        />
+        <Route
+          path="/us/:category"
           element={(
             <ArticleList
               country={country}

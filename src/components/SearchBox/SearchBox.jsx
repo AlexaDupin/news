@@ -16,7 +16,7 @@ function SearchBox({
     setSearch(event.target.value);
   };
 
-  const fetchArticle = async () => {
+  const fetchArticleByKeyword = async () => {
     try {
       const response = await axios.get(`https://newsapi.org/v2/everything?q=${search}&searchIn=title&language=${language}&sortBy=publishedAt&apiKey=1ce0e4832cb6431991be94fefd1c5b62`);
       setResults(response.data.articles);
@@ -31,7 +31,7 @@ function SearchBox({
     if (!search.trim()) {
       return;
     }
-    fetchArticle();
+    fetchArticleByKeyword();
     setSearch('');
   };
 
