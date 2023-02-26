@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import ArticleList from './components/ArticleList/ArticleList';
 import Header from './components/Header/Header';
@@ -32,6 +32,7 @@ function App() {
         country={country}
       />
       <Routes>
+        <Route path="/" element={<Navigate to="/us" />} />
         <Route
           path="/us"
           element={(
