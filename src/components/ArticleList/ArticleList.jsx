@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import axios from 'axios';
@@ -12,6 +13,14 @@ function ArticleList({
   results,
   setResults,
 }) {
+  // To identify the page we are currently on
+  const location = useLocation();
+  const [currentPath, setCurrentPath] = useState('');
+  // Give the URL to state whenever URL changes
+  useEffect(() => {
+    setCurrentPath(location.pathname);
+  }, [location]);
+
   // FetchArticle on API depending on country
   useEffect(() => {
     const fetchArticle = async () => {
@@ -24,11 +33,13 @@ function ArticleList({
       }
     };
     fetchArticle();
+    if (currentPath === `/${country}`) {
     // Refresh every 5 min and clear interval
-    const interval = setInterval(fetchArticle, 300 * 1000);
-    return () => {
-      clearInterval(interval);
-    };
+      const interval = setInterval(fetchArticle, 300 * 1000);
+      return () => {
+        clearInterval(interval);
+      };
+    }
   }, [country]);
 
   return (

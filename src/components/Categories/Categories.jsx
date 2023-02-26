@@ -29,17 +29,17 @@ function Categories({
 
   const [searchCategory, setSearchCategory] = useState('');
 
-  const fetchArticleByCategory = async () => {
-    try {
-      const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=${country}&category=${searchCategory}&sortBy=publishedAt&apiKey=1ce0e4832cb6431991be94fefd1c5b62`);
-      setResults(response.data.articles);
-      console.log('response.data', response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
+    const fetchArticleByCategory = async () => {
+      try {
+        const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=${country}&category=${searchCategory}&sortBy=publishedAt&apiKey=1ce0e4832cb6431991be94fefd1c5b62`);
+        setResults(response.data.articles);
+        console.log(`Data by category ${searchCategory}`, response.data);
+        console.log('searchCategory', searchCategory);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     fetchArticleByCategory();
   }, [searchCategory]);
 
@@ -50,9 +50,8 @@ function Categories({
           <li className="category">
             <NavLink
               style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              className="appheader-button"
               to={`${country}/${category.toLowerCase()}`}
-              onClick={() => { setSearchCategory(category); fetchArticleByCategory(); }}
+              onClick={() => { setSearchCategory(category); }}
             >
               {category}
             </NavLink>

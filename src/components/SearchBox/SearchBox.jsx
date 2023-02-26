@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import axios from 'axios';
@@ -9,6 +10,7 @@ import './searchBoxStyles.scss';
 function SearchBox({
   setResults,
   language,
+  country,
 }) {
   const [search, setSearch] = useState('');
 
@@ -16,11 +18,14 @@ function SearchBox({
     setSearch(event.target.value);
   };
 
+  const navigate = useNavigate();
+
   const fetchArticleByKeyword = async () => {
     try {
       const response = await axios.get(`https://newsapi.org/v2/everything?q=${search}&searchIn=title&language=${language}&sortBy=publishedAt&apiKey=1ce0e4832cb6431991be94fefd1c5b62`);
       setResults(response.data.articles);
-      console.log('response.data', response.data);
+      console.log(`response.data ${search}`, response.data);
+      navigate({ pathname: `/${country}`, search: `?${search}` });
     } catch (error) {
       console.log(error);
     }
@@ -81,6 +86,7 @@ function SearchBox({
 SearchBox.propTypes = {
   setResults: PropTypes.func.isRequired,
   language: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
 };
 
 SearchBox.defaultProps = {};

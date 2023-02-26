@@ -29,10 +29,11 @@ function App() {
       <SearchBox
         setResults={setResults}
         language={language}
+        country={country}
       />
       <Routes>
         <Route
-          path="/"
+          path="/us"
           element={(
             <ArticleList
               country={country}
