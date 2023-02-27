@@ -13,21 +13,31 @@ function Categories({
   setResults,
   country,
 }) {
-  const ENcategories = ['General', 'Entertainment', 'Health', 'Sports', 'Technology'];
-  const FRcategories = ['Général', 'Divertissement', 'Santé', 'Sports', 'Technologie'];
+  const allCategories = {
+    English: ['General', 'Entertainment', 'Health', 'Sports', 'Technology'],
+    French: ['Général', 'Divertissement', 'Santé', 'Sports', 'Technologie'],
+  };
 
   let categories;
   if (language === 'en') {
-    categories = ENcategories;
+    categories = allCategories.English;
   } else {
-    categories = FRcategories;
+    categories = allCategories.French;
   }
 
-  const activeStyle = {
-    textDecoration: 'underline',
-  };
-
   const [searchCategory, setSearchCategory] = useState('');
+
+  // Use category in EN for search even if browsing in FR
+  // Check if searchCategory is inside FR array and get index if it is
+  // Then set category to equivalent in EN to enable search in API
+  if (searchCategory && searchCategory !== 'Sports') {
+    const indexOfFRCat = allCategories.French.indexOf(searchCategory);
+    console.log('indexOfFRCat', indexOfFRCat);
+    if (indexOfFRCat > -1) {
+      setSearchCategory(allCategories.English[indexOfFRCat]);
+      console.log('searchCategory', searchCategory);
+    }
+  }
 
   useEffect(() => {
     const fetchArticleByCategory = async () => {
@@ -35,13 +45,17 @@ function Categories({
         const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=${country}&category=${searchCategory}&sortBy=publishedAt&apiKey=1ce0e4832cb6431991be94fefd1c5b62`);
         setResults(response.data.articles);
         console.log(`Data by category ${searchCategory}`, response.data);
-        console.log('searchCategory', searchCategory);
+        console.log('searchCategory axios', searchCategory);
       } catch (error) {
         console.log(error);
       }
     };
     fetchArticleByCategory();
   }, [searchCategory]);
+
+  const activeStyle = {
+    textDecoration: 'underline',
+  };
 
   return (
     <nav>

@@ -16,7 +16,6 @@ function ArticleList({
   // To identify the page we are currently on
   const location = useLocation();
   const [currentPath, setCurrentPath] = useState('');
-  // Give the URL to state whenever URL changes
   useEffect(() => {
     setCurrentPath(location.pathname);
   }, [location]);
@@ -33,8 +32,8 @@ function ArticleList({
       }
     };
     fetchArticle();
+    // Refresh every 5 min and clear interval if on Home page
     if (currentPath === `/${country}`) {
-    // Refresh every 5 min and clear interval
       const interval = setInterval(fetchArticle, 300 * 1000);
       return () => {
         clearInterval(interval);
