@@ -1,0 +1,24 @@
+.categories {
+    display: flex;
+    margin-bottom: 4rem;
+    justify-content: center;
+    gap: 10rem;
+    flex-wrap: wrap;
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width: 1150px) {
+    .categories {
+        gap: 1rem;
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+    }
+}
+
+@media (min-width: 701px) and (max-width: 1150px) {
+    .categories {
+        gap: 3rem;
+        font-size: 1.3rem;
+        margin-bottom: 3rem;
+    }
+}

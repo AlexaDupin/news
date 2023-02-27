@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { US, FR } from 'country-flag-icons/react/3x2';
 import {
@@ -10,16 +10,23 @@ import './headerStyles.scss';
 
 function Header({
   setCountry,
-  country,
+  setLanguage,
 }) {
-  // Customise title depending on country
-  const getTitle = () => {
-    if (country === 'us') {
-      return 'News directly from the US';
-    }
-    if (country === 'fr') {
-      return 'Les actualités en France';
-    }
+  const [title, setTitle] = useState('News directly from the US');
+
+  const handleUS = () => {
+    setCountry('us');
+    setLanguage('en');
+    setTitle('News directly from the US');
+  };
+
+  const handleFR = () => {
+    setCountry('fr');
+    setLanguage('fr');
+    setTitle('Les actualités en France');
+  };
+
+  const activeStyle = {
   };
 
   return (
@@ -29,30 +36,36 @@ function Header({
           <li className="header__flag">
             <NavLink
               to="/"
-              onClick={() => setCountry('us')}
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              onClick={handleUS}
             >
-              <US title="United States" />
+              <div className="header__flag__icon">
+                <US title="United States" />
+              </div>
             </NavLink>
           </li>
           {' '}
           <li className="header__flag">
             <NavLink
               to="/fr"
-              onClick={() => setCountry('fr')}
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              onClick={handleFR}
             >
-              <FR title="France" />
+              <div className="header__flag__icon">
+                <FR title="France" />
+              </div>
             </NavLink>
           </li>
         </ul>
       </nav>
-      <h1 className="header__title">{getTitle()}</h1>
+      <h1 className="header__title">{title}</h1>
     </header>
   );
 }
 
 Header.propTypes = {
   setCountry: PropTypes.func.isRequired,
-  country: PropTypes.string.isRequired,
+  setLanguage: PropTypes.func.isRequired,
 };
 
 Header.defaultProps = {};

@@ -1,0 +1,80 @@
+@import 'src/styles/vars';
+
+.searchbox {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+
+    &_field {
+        margin-right: 1rem;
+    }
+
+    &_input {
+        width: 20%;
+        padding: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    &_button {
+        border-radius: 7%;
+        padding: 0.5rem 1rem;
+        font-size: 1.1rem;
+        background-color: $primary-color;
+        color: $secondary-color;
+        font-weight: bold;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            background: $secondary-color;
+            color: $primary-color;
+        }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .searchbox {
+        display: flex;
+        flex-direction: column;
+        font-size: 1.1rem;
+
+        &_input {
+            width: 80%;
+            padding: 0.3rem;
+            font-size: 1.1rem;
+        }
+
+        &_button {
+            width: 30%;
+            padding: 0.5rem 0.6rem;
+            font-size: 1rem;
+        }
+
+        &_field {
+            margin: 0.5rem auto;
+        }
+    }
+}
+
+@media (min-width: 701px) and (max-width: 1000px) {
+        .searchbox {
+            display: flex;
+            flex-direction: column;
+            font-size: 1.3rem;
+    
+            &_input {
+                width: 50%;
+                padding: 0.3rem;
+                font-size: 1.1rem;
+            }
+    
+            &_button {
+                width: 20%;
+                padding: 0.5rem 0.6rem;
+                font-size: 1rem;
+            }
+    
+            &_field {
+                margin: 0.5rem auto;
+            }
+        }
+}
