@@ -43,14 +43,13 @@ function ArticleList({
 
   return (
     <main className="articles__list">
-      {results.map(({
-        id, title, url, urlToImage,
-      }) => (
+      {results.map((article, index) => (
         <Article
-          key={id}
-          title={title}
-          url={url}
-          image={urlToImage}
+          // eslint-disable-next-line react/no-array-index-key
+          key={index}
+          title={article.title}
+          url={article.url}
+          image={article.urlToImage || null}
         />
       ))}
     </main>
@@ -64,7 +63,7 @@ ArticleList.propTypes = {
     id: PropTypes.string,
     title: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
-    urlToImage: PropTypes.string.isRequired,
+    urlToImage: PropTypes.string,
   })).isRequired,
 };
 

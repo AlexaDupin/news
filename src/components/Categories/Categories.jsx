@@ -61,7 +61,10 @@ function Categories({
     <nav>
       <ul className="categories">
         {categories.map((category) => (
-          <li className="category">
+          <li
+            className="category"
+            key={category.toString()}
+          >
             <NavLink
               style={({ isActive }) => (isActive ? activeStyle : undefined)}
               to={`${country}/${category.toLowerCase()}`}
