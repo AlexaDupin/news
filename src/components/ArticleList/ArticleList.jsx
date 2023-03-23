@@ -26,7 +26,7 @@ function ArticleList({
       try {
         const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=${country}&sortBy=publishedAt&apiKey=1ce0e4832cb6431991be94fefd1c5b62`);
         setResults(response.data.articles);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.log(error);
       }

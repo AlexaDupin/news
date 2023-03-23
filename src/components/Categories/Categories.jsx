@@ -32,10 +32,9 @@ function Categories({
   // Then set category to equivalent in EN to enable search in API
   if (searchCategory && searchCategory !== 'Sports') {
     const indexOfFRCat = allCategories.French.indexOf(searchCategory);
-    console.log('indexOfFRCat', indexOfFRCat);
     if (indexOfFRCat > -1) {
       setSearchCategory(allCategories.English[indexOfFRCat]);
-      console.log('searchCategory', searchCategory);
+      // console.log('searchCategory', searchCategory);
     }
   }
 
@@ -44,8 +43,7 @@ function Categories({
       try {
         const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=${country}&category=${searchCategory}&sortBy=publishedAt&apiKey=1ce0e4832cb6431991be94fefd1c5b62`);
         setResults(response.data.articles);
-        console.log(`Data by category ${searchCategory}`, response.data);
-        console.log('searchCategory axios', searchCategory);
+        // console.log(`Data by category ${searchCategory}`, response.data);
       } catch (error) {
         console.log(error);
       }
