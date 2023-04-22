@@ -24,7 +24,7 @@ function SearchBox({
     try {
       const response = await axios.get(`https://newsapi.org/v2/everything?q=${search}&searchIn=title&language=${language}&sortBy=publishedAt&apiKey=1ce0e4832cb6431991be94fefd1c5b62`);
       setResults(response.data.articles);
-      console.log(`response.data ${search}`, response.data);
+      // console.log(`response.data ${search}`, response.data);
       navigate({ pathname: `/${country}`, search: `?${search}` });
     } catch (error) {
       console.log(error);

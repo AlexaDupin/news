@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router';
 import {
-  NavLink,
+  NavLink, useNavigate,
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -32,10 +33,9 @@ function Categories({
   // Then set category to equivalent in EN to enable search in API
   if (searchCategory && searchCategory !== 'Sports') {
     const indexOfFRCat = allCategories.French.indexOf(searchCategory);
-    console.log('indexOfFRCat', indexOfFRCat);
     if (indexOfFRCat > -1) {
       setSearchCategory(allCategories.English[indexOfFRCat]);
-      console.log('searchCategory', searchCategory);
+      // console.log('searchCategory', searchCategory);
     }
   }
 
@@ -44,14 +44,13 @@ function Categories({
       try {
         const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=${country}&category=${searchCategory}&sortBy=publishedAt&apiKey=1ce0e4832cb6431991be94fefd1c5b62`);
         setResults(response.data.articles);
-        console.log(`Data by category ${searchCategory}`, response.data);
-        console.log('searchCategory axios', searchCategory);
+        // console.log(`Data by category ${searchCategory}`, response.data);
       } catch (error) {
         console.log(error);
       }
     };
     fetchArticleByCategory();
-  }, [searchCategory]);
+  }, [searchCategory, language]);
 
   const activeStyle = {
     textDecoration: 'underline',
@@ -61,10 +60,13 @@ function Categories({
     <nav>
       <ul className="categories">
         {categories.map((category) => (
-          <li className="category">
+          <li
+            className="category"
+            key={category.toString()}
+          >
             <NavLink
               style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              to={`${country}/${category.toLowerCase()}`}
+              to={`${category.toLowerCase()}`}
               onClick={() => { setSearchCategory(category); }}
             >
               {category}

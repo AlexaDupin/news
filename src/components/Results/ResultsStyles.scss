@@ -1,0 +1,13 @@
+.message {
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+@media screen and (min-width: 1000px) {
+    .articles__list {
+        display: flex;
+        gap: 3rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    }
