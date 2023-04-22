@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router';
 import {
-  NavLink,
+  NavLink, useNavigate,
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -49,7 +50,7 @@ function Categories({
       }
     };
     fetchArticleByCategory();
-  }, [searchCategory]);
+  }, [searchCategory, language]);
 
   const activeStyle = {
     textDecoration: 'underline',
@@ -65,7 +66,7 @@ function Categories({
           >
             <NavLink
               style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              to={`${country}/${category.toLowerCase()}`}
+              to={`${category.toLowerCase()}`}
               onClick={() => { setSearchCategory(category); }}
             >
               {category}

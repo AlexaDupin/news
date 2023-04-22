@@ -1,23 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ArticleList from '../ArticleList/ArticleList';
+import Article from '../Article/Article';
 
 import './ResultsStyles.scss';
 
 function Results({
   results,
-  country,
-  setResults,
   language,
 }) {
   if (results.length !== 0) {
     return (
-      <ArticleList
-        country={country}
-        results={results}
-        setResults={setResults}
-      />
+      <main className="articles__list">
+        {results.map((article, index) => (
+          <Article
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
+            title={article.title}
+            url={article.url}
+            image={article.urlToImage || null}
+          />
+        ))}
+      </main>
     );
   } if (language === 'en') {
     return <p className="message">No results for your search</p>;
@@ -33,8 +37,6 @@ Results.propTypes = {
     url: PropTypes.string.isRequired,
     urlToImage: PropTypes.string,
   })).isRequired,
-  country: PropTypes.string.isRequired,
-  setResults: PropTypes.func.isRequired,
   language: PropTypes.string.isRequired,
 };
 
