@@ -22,7 +22,13 @@ function SearchBox({
 
   const fetchArticleByKeyword = async () => {
     try {
-      const response = await axios.get(`https://newsapi.org/v2/everything?q=${search}&searchIn=title&language=${language}&sortBy=publishedAt&apiKey=1ce0e4832cb6431991be94fefd1c5b62`);
+      // const response = await axios.get(`https://newsapi.org/v2/everything?q=${search}&searchIn=title&language=${language}&sortBy=publishedAt&apiKey=1ce0e4832cb6431991be94fefd1c5b62`);
+      // setResults(response.data.articles);
+      const response = await axios.get(`https://api.newscatcherapi.com/v2/search?q=${search}&search_in=title&lang=${language}&countries=${country}`, {
+        headers: {
+          'x-api-key': '4AEEX9YyVVojVn2NR5qhtEXjtZhzhJ46Ay4EjtcZ38I',
+        },
+      });
       setResults(response.data.articles);
       // console.log(`response.data ${search}`, response.data);
       navigate({ pathname: `/${country}`, search: `?${search}` });

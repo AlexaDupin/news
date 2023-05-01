@@ -9,6 +9,7 @@ function Results({
   results,
   language,
 }) {
+  console.log(results);
   if (results.length !== 0) {
     return (
       <main className="articles__list">
@@ -17,8 +18,8 @@ function Results({
             // eslint-disable-next-line react/no-array-index-key
             key={index}
             title={article.title}
-            url={article.url}
-            image={article.urlToImage || null}
+            url={article.link}
+            image={article.media || null}
           />
         ))}
       </main>
@@ -34,8 +35,8 @@ Results.propTypes = {
   results: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    urlToImage: PropTypes.string,
+    link: PropTypes.string.isRequired,
+    media: PropTypes.string,
   })).isRequired,
   language: PropTypes.string.isRequired,
 };

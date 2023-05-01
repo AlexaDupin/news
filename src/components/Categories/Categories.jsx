@@ -15,8 +15,8 @@ function Categories({
   country,
 }) {
   const allCategories = {
-    English: ['General', 'Entertainment', 'Health', 'Sports', 'Technology'],
-    French: ['Général', 'Divertissement', 'Santé', 'Sports', 'Technologie'],
+    English: ['news', 'entertainment', 'travel', 'sport', 'tech'],
+    French: ['actualités', 'divertissement', 'voyage', 'sport', 'technologies'],
   };
 
   let categories;
@@ -31,20 +31,30 @@ function Categories({
   // Use category in EN for search even if browsing in FR
   // Check if searchCategory is inside FR array and get index if it is
   // Then set category to equivalent in EN to enable search in API
-  if (searchCategory && searchCategory !== 'Sports') {
+  if (searchCategory && searchCategory !== 'sport') {
     const indexOfFRCat = allCategories.French.indexOf(searchCategory);
+    console.log(indexOfFRCat);
     if (indexOfFRCat > -1) {
+      console.log('searchCategory', searchCategory);
       setSearchCategory(allCategories.English[indexOfFRCat]);
-      // console.log('searchCategory', searchCategory);
+      console.log('searchCategory', searchCategory);
     }
   }
 
   useEffect(() => {
+    console.log('searchCategory', searchCategory);
+    console.log('country', country);
+
     const fetchArticleByCategory = async () => {
       try {
-        const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=${country}&category=${searchCategory}&sortBy=publishedAt&apiKey=1ce0e4832cb6431991be94fefd1c5b62`);
+        // const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=${country}&category=${searchCategory}&sortBy=publishedAt&apiKey=1ce0e4832cb6431991be94fefd1c5b62`);
+        const response = await axios.get(`https://api.newscatcherapi.com/v2/latest_headlines?countries=${country}&lang=${language}&topic=${searchCategory}`, {
+          headers: {
+            'x-api-key': '4AEEX9YyVVojVn2NR5qhtEXjtZhzhJ46Ay4EjtcZ38I',
+          },
+        });
         setResults(response.data.articles);
-        // console.log(`Data by category ${searchCategory}`, response.data);
+        console.log(`Data by category ${searchCategory}`, response.data.articles);
       } catch (error) {
         console.log(error);
       }
@@ -67,9 +77,9 @@ function Categories({
             <NavLink
               style={({ isActive }) => (isActive ? activeStyle : undefined)}
               to={`${category.toLowerCase()}`}
-              onClick={() => { setSearchCategory(category); }}
+              onClick={() => { setSearchCategory(category.toLowerCase()); }}
             >
-              {category}
+              {category.toUpperCase()}
             </NavLink>
           </li>
         ))}
