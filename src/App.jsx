@@ -11,6 +11,7 @@ import './styles/index.scss';
 function App() {
   const [country, setCountry] = useState('us');
   const [language, setLanguage] = useState('en');
+  console.log(import.meta.env.VITE_API_KEY);
 
   return (
     <div className="App">

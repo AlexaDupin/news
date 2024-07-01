@@ -24,7 +24,7 @@ function SearchBox({
     try {
       // const response = await axios.get(`https://newsapi.org/v2/everything?q=${search}&searchIn=title&language=${language}&sortBy=publishedAt&apiKey=1ce0e4832cb6431991be94fefd1c5b62`);
       // setResults(response.data.articles);
-      const response = await axios.get(`https://api.newscatcherapi.com/v2/search?q=${search}&search_in=title&lang=${language}&countries=${country}`, {
+      const response = await axios.get(`https://api.newscatcherapi.com/v2/search?q=${search}&search_in=title&lang=${language}&countries=${country}&sort_by=date`, {
         headers: {
           'x-api-key': '4AEEX9YyVVojVn2NR5qhtEXjtZhzhJ46Ay4EjtcZ38I',
         },
