@@ -1,7 +1,14 @@
+// .article__image {
+//     width: 100%;
+//     height: 80%;
+//     object-fit: cover;
+// }
+
 .article__image {
     width: 100%;
-    height: 80%;
-    object-fit: cover;
+    height: 15rem;
+    object-fit: fill;
+    display: block;
 }
 
 .article__title {
@@ -18,4 +25,20 @@
     .articles__item {
         width: 25%;
     }
+
+    .article__image {
+        width: 100%;
+        height: 15rem;
+        object-fit: fill;
+        display: block;
     }
+}
+
+@media screen and (min-width: 769px) {        
+    .article__image {
+        width: 100%;
+        // height: 25rem;
+        object-fit: fill;
+        display: block;
+    }
+}    
