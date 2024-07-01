@@ -50,7 +50,7 @@ function Categories({
         // const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=${country}&category=${searchCategory}&sortBy=publishedAt&apiKey=1ce0e4832cb6431991be94fefd1c5b62`);
         const response = await axios.get(`https://api.newscatcherapi.com/v2/latest_headlines?countries=${country}&lang=${language}&topic=${searchCategory}&when=1d`, {
           headers: {
-            'x-api-key': '4AEEX9YyVVojVn2NR5qhtEXjtZhzhJ46Ay4EjtcZ38I',
+            'x-api-key': process.env.VITE_API_KEY,
           },
         });
         setResults(response.data.articles);

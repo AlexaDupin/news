@@ -26,7 +26,7 @@ function SearchBox({
       // setResults(response.data.articles);
       const response = await axios.get(`https://api.newscatcherapi.com/v2/search?q=${search}&search_in=title&lang=${language}&countries=${country}&sort_by=date`, {
         headers: {
-          'x-api-key': '4AEEX9YyVVojVn2NR5qhtEXjtZhzhJ46Ay4EjtcZ38I',
+          'x-api-key': process.env.VITE_API_KEY,
         },
       });
       setResults(response.data.articles);
