@@ -13,5 +13,5 @@ export default defineConfig({
   define: {
     'process.env': process.env,
   },
-  base: '/news/',
+  base: '/news',
 });
