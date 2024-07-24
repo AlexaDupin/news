@@ -8,10 +8,10 @@ dotenv.config();
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/news',
   plugins: [react()],
   // define process env
   define: {
     'process.env': process.env,
   },
+  base: '/news/',
 });
